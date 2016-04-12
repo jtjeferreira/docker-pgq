@@ -87,7 +87,7 @@ if [ "$1" = 'postgres' ]; then
 		done
 
 		echo "${psql[@]}"
-		"${psql[@]}" < /usr/share/skytools3/pgq.sql
+		"${psql[@]}" < /usr/share/postgresql/$PG_MAJOR/contrib/pgq.sql
 
 		gosu postgres pg_ctl -D "$PGDATA" -m fast -w stop
 
@@ -96,12 +96,12 @@ if [ "$1" = 'postgres' ]; then
 		echo
 	fi
 
-	exec gosu postgres "$@"
-
 	gosu postgres pgqd --ini > /home/postgres/ticker.ini
 	gosu postgres mkdir -p /home/postgres/log
 	gosu postgres mkdir -p /home/postgres/pid
 	gosu postgres pgqd /home/postgres/ticker.ini -v -d
+
+	exec gosu postgres "$@"
 fi
 
 exec "$@"

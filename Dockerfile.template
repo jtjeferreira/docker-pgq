@@ -39,7 +39,6 @@ RUN apt-get update \
 	&& apt-get install -y \
 		postgresql-$PG_MAJOR=$PG_VERSION \
 		postgresql-contrib-$PG_MAJOR=$PG_VERSION \
-		skytools3 \
 		skytools3-ticker \
 		postgresql-$PG_MAJOR-pgq3 \
 	&& rm -rf /var/lib/apt/lists/*
