@@ -14,7 +14,7 @@ install:
 before_script:
   - env | sort
   - cd "$VERSION"
-  - image="postgres:$VERSION"
+  - image="pgq:$VERSION"
 
 script:
   - docker build -t "$image" .
