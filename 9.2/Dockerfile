@@ -30,6 +30,7 @@ RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys B97B0AFCAA1A4
 
 ENV PG_MAJOR 9.2
 ENV PG_VERSION 9.2.16-1.pgdg80+1
+ENV SKYTOOLS_VERSION 3.2.6-4.pgdg80+1
 
 RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list
 
@@ -39,8 +40,8 @@ RUN apt-get update \
 	&& apt-get install -y \
 		postgresql-$PG_MAJOR=$PG_VERSION \
 		postgresql-contrib-$PG_MAJOR=$PG_VERSION \
-		skytools3-ticker \
-		postgresql-$PG_MAJOR-pgq3 \
+		skytools3-ticker=$SKYTOOLS_VERSION \
+		postgresql-$PG_MAJOR-pgq3=$SKYTOOLS_VERSION \
 	&& rm -rf /var/lib/apt/lists/*
 
 # make the sample config easier to munge (and "correct by default")
